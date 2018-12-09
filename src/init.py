@@ -18,7 +18,8 @@
 # <http://www.gnu.org/licenses/>.
 import sys
 from os import path
-from PySide import QtGui, QtCore
+from PyQt5 import QtGui, QtCore
+from PyQt5 import QtWidgets
 from ui.mainwindow import Ui_MainWindow
 from ui.license import Ui_Form as License_Ui_Form
 from ui.about import Ui_Form as About_Ui_Form
@@ -30,7 +31,7 @@ import util.read_config as ReadConfig
 
 
 
-class MyApplication(QtGui.QMainWindow):
+class MyApplication(QtWidgets.QMainWindow):
 
     def __assign_displays(self):
         """assigns display name """
@@ -48,7 +49,7 @@ class MyApplication(QtGui.QMainWindow):
 
     def __init__(self, parent=None):
         """Initializes"""
-        QtGui.QMainWindow.__init__(self, parent)
+        QtWidgets.QMainWindow.__init__(self, parent)
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
@@ -60,7 +61,7 @@ class MyApplication(QtGui.QMainWindow):
         self.generate_dynamic_items()
         self.values = []
         self.array_value = 0.01
-        for i in xrange(0, 100):
+        for i in range(0, 100):
             self.values.append(self.array_value)
             self.array_value += 0.01
         self.connect_handlers()
@@ -509,12 +510,12 @@ class MyApplication(QtGui.QMainWindow):
         return s_br_rgb
 
 
-class LicenseForm(QtGui.QWidget):
+class LicenseForm(QtWidgets.QWidget):
 
     """License Form widget initialization"""
 
     def __init__(self, parent=None):
-        QtGui.QWidget.__init__(self, parent)
+        QtWidgets.QWidget.__init__(self, parent)
         self.ui = License_Ui_Form()
         self.ui.setupUi(self)
         # self.connect_handlers()
@@ -526,12 +527,12 @@ class LicenseForm(QtGui.QWidget):
         self.main_window = main_win
 
 
-class AboutForm(QtGui.QWidget):
+class AboutForm(QtWidgets.QWidget):
 
     """About Form widget initialization"""
 
     def __init__(self, parent=None):
-        QtGui.QWidget.__init__(self, parent)
+        QtWidgets.QWidget.__init__(self, parent)
         self.ui = About_Ui_Form()
         self.ui.setupUi(self)
         self.main_window = None
@@ -542,12 +543,12 @@ class AboutForm(QtGui.QWidget):
         self.main_window = main_win
 
 
-class HelpForm(QtGui.QWidget):
+class HelpForm(QtWidgets.QWidget):
 
     """Help Form widget initialization"""
 
     def __init__(self, parent=None):
-        QtGui.QWidget.__init__(self, parent)
+        QtWidgets.QWidget.__init__(self, parent)
         self.ui = Help_Ui_Form()
         self.ui.setupUi(self)
         self.main_window = None
@@ -558,7 +559,7 @@ class HelpForm(QtGui.QWidget):
         self.main_window = main_win
 
 if __name__ == "__main__":
-    APP = QtGui.QApplication(sys.argv)
+    APP = QtWidgets.QApplication(sys.argv)
     WINDOW = MyApplication()
     WINDOW.show()
     sys.exit(APP.exec_())

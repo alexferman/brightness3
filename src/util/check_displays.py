@@ -27,7 +27,7 @@ def detect_display_devices():
     """
     connected_displays = []
 
-    xrandr_output = subprocess.check_output('xrandr -q', shell=True)
+    xrandr_output = subprocess.check_output('xrandr -q', shell=True).decode("utf-8")
 
     lines = xrandr_output.split('\n')
     for line in lines:

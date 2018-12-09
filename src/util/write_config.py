@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Brightness Controller.  If not, see <http://www.gnu.org/licenses/>.
 
-import ConfigParser
+import configparser
 
 
 def write_primary_display(p_br_rgb, file_path):
@@ -25,7 +25,7 @@ def write_primary_display(p_br_rgb, file_path):
     int primary_green, int primary_blue)
     @rtype : object
     """
-    config = ConfigParser.RawConfigParser()
+    config = configparser.RawConfigParser()
     config.add_section('type')
     config.add_section('primary')
     config.set('primary', 'has_secondary', False)
@@ -53,7 +53,7 @@ def write_both_display(p_br_rgb, s_br_rgb, file_path):
     int secondary_green, int secondary_blue, source)
     file_path - the save file path
     """
-    config = ConfigParser.RawConfigParser()
+    config = configparser.RawConfigParser()
     config.add_section('primary')
     config.set('primary', 'has_secondary', True)
     if p_br_rgb is None:
