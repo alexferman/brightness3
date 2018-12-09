@@ -18,8 +18,7 @@
 # <http://www.gnu.org/licenses/>.
 import sys
 from os import path
-from PyQt5 import QtGui, QtCore
-from PyQt5 import QtWidgets
+from PyQt5 import QtCore, QtWidgets
 from ui.mainwindow import Ui_MainWindow
 from ui.license import Ui_Form as License_Ui_Form
 from ui.about import Ui_Form as About_Ui_Form
@@ -47,9 +46,9 @@ class MyApplication(QtWidgets.QMainWindow):
             self.display1 = self.displays[0]
             self.display2 = self.displays[1]
 
-    def __init__(self, parent=None):
+    def __init__(self):
         """Initializes"""
-        QtWidgets.QMainWindow.__init__(self, parent)
+        QtWidgets.QMainWindow.__init__(self)
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
@@ -264,7 +263,7 @@ class MyApplication(QtWidgets.QMainWindow):
         Executor.execute_command(cmd_value)
 
     def changed_state(self, state):
-        if state == QtCore.Qt.Checked:
+        if state == Qt.Checked:
             temp = self.display1
             self.display1 = self.display2
             self.display2 = temp
@@ -409,7 +408,7 @@ class MyApplication(QtWidgets.QMainWindow):
 
     def save_settings(self):
         """ save current primary and secondary display settings"""
-        file_path = QtGui.QFileDialog.getSaveFileName()[0]
+        file_path = QtWidgets.QFileDialog.getSaveFileName()[0]
         # just a number. path.exists won't work in case it is a new file.
         if len(file_path) > 5:
             if self.no_of_connected_dev == 1:
@@ -429,7 +428,7 @@ class MyApplication(QtWidgets.QMainWindow):
         """
         Load current primary and secondary display settings
         """
-        file_path = QtGui.QFileDialog.getOpenFileName()[0]
+        file_path = QtWidgets.QFileDialog.getOpenFileName()[0]
         if path.exists(file_path):
             loaded_settings = ReadConfig.read_configuration(file_path)
             print(loaded_settings)
@@ -450,9 +449,9 @@ class MyApplication(QtWidgets.QMainWindow):
                 primary_source = loaded_settings[4]
                 secondary_source = loaded_settings[9]
                 primary_combo_index = self.ui.primary_combobox.findText(
-                    primary_source, QtCore.Qt.MatchFixedString)
+                    primary_source, Qt.MatchFixedString)
                 second_combo_index = self.ui.secondary_combo.findText(
-                    secondary_source, QtCore.Qt.MatchFixedString)
+                    secondary_source, Qt.MatchFixedString)
                 if primary_combo_index >= 0:
                     self.ui.primary_combobox.setCurrentIndex(primary_combo_index)
                     self.primary_source_combo_activated(primary_source)

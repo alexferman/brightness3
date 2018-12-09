@@ -40,7 +40,7 @@ def write_primary_display(p_br_rgb, file_path):
         config.set('primary', 'green', p_br_rgb[2])
         config.set('primary', 'blue', p_br_rgb[3])
 
-    with open(file_path, 'wb') as configfile:
+    with open(file_path, 'w') as configfile:
         config.write(configfile)
 
 
@@ -79,5 +79,5 @@ def write_both_display(p_br_rgb, s_br_rgb, file_path):
         config.set('secondary', 'green', s_br_rgb[2])
         config.set('secondary', 'blue', s_br_rgb[3])
         config.set('secondary', 'source', s_br_rgb[4])
-    with open(file_path, 'wb') as configfile:
+    with open(file_path, 'w') as configfile:
         config.write(configfile)

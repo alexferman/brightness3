@@ -27,7 +27,7 @@ def read_configuration(file_path):
     for one display:
     return (p_brightness, p_red, p_green, p_blue)
     """
-    config = configparser.Rawconfigparser()
+    config = configparser.ConfigParser()
     config.read(file_path)
     p_brightness = config.getint('primary', 'brightness')
     p_red = config.getint('primary', 'red')
